@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo de Media Queries</title>
+
+    <!-- Importante para layout responsivo em mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* ============================
+       ESTILOS GERAIS (TODAS AS TELAS)
+       ============================ */
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #ffffff;
+            color: #111827;
+            line-height: 1.5;
+        }
+
+        header {
+            background: #61031f;
+            color: #ffffff;
+            padding: 16px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        h1,
+        h2 {
+            margin-top: 0;
+        }
+
+        .explicacao {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .explicacao code {
+            background: #111827;
+            color: #e5e7eb;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* Galeria de imagens usando CSS Grid */
+        .galeria {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(4, 1fr);
+            /* desktop: 4 colunas */
+        }
+
+        .galeria figure {
+            margin: 0;
+            background: #f9fafb;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        .galeria img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .galeria figcaption {
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .codigo {
+            background: #0f172a;
+            color: #e5e7eb;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 16px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 16px;
+            margin-top: 32px;
+            background: #111827;
+            color: #e5e7eb;
+            font-size: 0.85rem;
+        }
+
+        /* ============================
+       MEDIA QUERY (TELAS PEQUENAS)
+       ============================ */
+
+        /*
+      Na prática, o Media Queries aparece dentro do CSS.
+      Ele faz com que a MESMA página se comporte de forma
+      diferente dependendo da largura da tela.
+    */
+
+        @media (max-width: 768px) {
+            body {
+                background: #f3f4f6;
+                /* muda um pouco o fundo no mobile */
+            }
+
+            header {
+                font-size: 0.95rem;
+                padding: 12px;
+            }
+
+            main {
+                padding: 12px;
+            }
+
+            /* Galeria passa a ter 2 colunas no tablet/celular maior */
+            .galeria {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            /* Em telas bem pequenas, 1 coluna só */
+            .galeria {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Exemplo de Media Queries na Prática</h1>
+        <p>Mesma página, comportamentos diferentes em telas diferentes.</p>
+    </header>
+
+    <main>
+        <section class="explicacao">
+            <h2>O que são Media Queries?</h2>
+            <p>
+                <strong>Media Queries</strong> são regras especiais escritas dentro do arquivo CSS que dizem:
+                <em>“se a mídia (tela) tiver essas características, use estes estilos”</em>.
+            </p>
+            <p>
+                Na prática, isso permite que a <strong>mesma página</strong> se comporte de maneiras diferentes
+                em celulares, tablets e desktops, sem mudar o HTML.
+            </p>
+        </section>
+
+        <section>
+            <h2>Galeria Responsiva</h2>
+            <p>
+                Abaixo, uma galeria de imagens usando <code>CSS Grid</code>. Em telas grandes, temos
+                4 colunas. Em telas menores que <code>768px</code>, a galeria passa a ter 2 colunas. Em telas bem
+                pequenas
+                (menores que <code>480px</code>), vira 1 coluna.
+            </p>
+
+            <div class="galeria">
+                <figure>
+                    <img src="img/fig01.jpg" alt="Figura 1">
+                    <figcaption>Figura 1 — Exemplo de imagem responsiva.</figcaption>
+                </figure>
+                <figure>
+                    <img src="img/fig02.jpg" alt="Figura 2">
+                    <figcaption>Figura 2 — Outro item da galeria.</figcaption>
+                </figure>
+                <figure>
+                    <img src="img/fig03.jpg" alt="Figura 3">
+                    <figcaption>Figura 3 — Teste o layout em diferentes telas.</figcaption>
+                </figure>
+                <figure>
+                    <img src="img/fig04.jpg" alt="Figura 4">
+                    <figcaption>Figura 4 — Mesma página, comportamentos diferentes.</figcaption>
+                </figure>
+            </div>
+
+            <div class="codigo">
+                <pre><code>/* Estilos gerais (valem para todas as telas) */
+.galeria {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Estilos só para telas com até 768px de largura */
+@media (max-width: 768px) {
+  .galeria {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Estilos só para telas com até 480px de largura */
+@media (max-width: 480px) {
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Exemplo didático de Media Queries — adapte e reutilize este arquivo em suas aulas.
+    </footer>
+</body>
+
+</html>
